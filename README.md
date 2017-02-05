@@ -45,7 +45,7 @@ Control Endpoints:
 ## Proposed Controls
 
 Write | Usage 
--------------------
+------ | -----------
 | State   | Controls the on off state of the light. |
 | Brightness | Value 0 to 100 Controls the brightness of the bulb |
 | Colour-RGB | Colour of the bulb as RGB |
@@ -53,10 +53,25 @@ Write | Usage
 | Colour-SAT | Saturation of the bulb (if supported) |
 | Mode | Mode of the light (discomodes) |
 | White | White Mode of the light |
-| Temperatre | Colour temperature of the light |
+| Temperature | Colour temperature of the light |
 
 
 Read | Usage
-------------
+-----|------
 State | Last written or current on/off sate
 Brightness | Current brightness...
+
+###
+Configuration
+
+For the MiLight case we have bridges and each bridge may have n zones where zone 0 is a special zone which 
+Refers to all zones on that bridge.
+
+Configuration can be done as
+
+List of bridges
+
+Bridge = Bridge Config (IP address etc) + list of bulb nodes
+
+Bulb node = Zone name, Zone number, Zone types (for milight = RGB, RGBWW, White, Bridge)
+
