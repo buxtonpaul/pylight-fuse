@@ -65,7 +65,7 @@ Brightness | Current brightness...
 Configuration
 
 For the MiLight case we have bridges and each bridge may have n zones where zone 0 is a special zone which 
-Refers to all zones on that bridge.
+Refers to all zones on that bridge for that light type.
 
 Configuration can be done as
 
@@ -75,3 +75,55 @@ Bridge = Bridge Config (IP address etc) + list of bulb nodes
 
 Bulb node = Zone name, Zone number, Zone types (for milight = RGB, RGBWW, White, Bridge)
 
+----
+# Thoughts
+Bridge should allow multiple names for the same zone.
+Zone status should be pushed back to all nodes that connect to that zone.
+Should be able to produce Graphviz representation of the attached lights.
+
+
+
+~~~~
+                            |----- Zone 1, RGBW+-----> Hall Light
+     Bridge_milight001------|                  |-----> Landing Light
+                            |
+                            |
+                            |--------->Zone 2, RGBW ----> Bedroom Light
+                            |
+                            |---------->Zone 1, White----->Spare Room
+
+
+
+
+Is actually more like
+
+
+
+        Bridge -----------> RGBW 
+                        |
+                        |
+                        |--> White ------> Zone 0--------------------|
+                                    |                                |
+                                    |                                |
+                                    |----------------> Zone 1<-------|
+                                    |                                |
+                                    |                                |
+                                    |----------------> Zone 2<-------+
+
+~~~~
+
+
+![Alt text](https://g.gravizo.com/g?
+  digraph G {
+    aize ="4,4";
+    bridge1 -> rgbw;
+    rgb1 -> zoner1;
+    rgb1 -> zoner2;
+    bridge1 -> white;
+    white -> zonew1;
+    zonew1 -> spareroom;
+    zoner1 -> bedroom;
+    zoner2 -> hallway;
+    zoner2 -> landing;
+  }
+)
