@@ -116,9 +116,9 @@ Is actually more like
 ![Alt text](https://g.gravizo.com/g?
   digraph G {
     aize ="4,4";
-    bridge1 -> rgbw;
-    rgb1 -> zoner1;
-    rgb1 -> zoner2;
+    bridge1 -> rgbw1;
+    rgbw1 -> zoner1;
+    rgbw1 -> zoner2;
     bridge1 -> white;
     white -> zonew1;
     zonew1 -> spareroom;
